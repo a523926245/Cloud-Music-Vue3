@@ -1,0 +1,104 @@
+// 公共图标背景样式
+.icon {
+    background-repeat: no-repeat;
+    background-image: url("@/assets/images/icon.png");
+}
+.topbar-bg {
+    background-repeat: no-repeat;
+    background-image: url("@/assets/images/topbar.png");
+}
+.userlist-bg {
+    background-repeat: no-repeat;
+    background-image: url("@/assets/images/toplist.png");
+}
+
+// 手型样式
+.cursor {
+    cursor: pointer;
+}
+
+.pseudo-class {
+    content: '';
+    position: absolute;
+}
+
+// 滚动条样式
+%scrollbar{
+    &::-webkit-scrollbar{
+        // 滚动条整体部分，其中有属性 width、height、background、border等（和块元素一样）
+        width: 6px;
+        height: 6px;
+    }
+    &::-webkit-scrollbar-track-piece{
+        // 内层轨道，滚动条中间部分
+        background: #ddd;
+    }
+    &::-webkit-scrollbar-thumb{
+        // 滚动条里可以拖动的部分
+        background: #fff;
+        border-radius: 4px;
+    }
+}
+
+// flex布局 默认居中
+@mixin flexLayout($justify: center, $align: center, $direction: row) {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify; // flex-start | flex-end | center | space-between | space-around
+    align-items: $align; // flex-start | flex-end | center | baseline | stretch
+}
+
+// position居中
+@mixin positionCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+// 文本超出隐藏 ...隐藏文本
+@mixin ellipsis($width: 100%) {
+    width: $width;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// 正三角形
+// $direction -> top | bottom | left | right
+@mixin triangle($width, $height, $color, $direction ) { 
+    $width: $width/2;
+    $border-style: $height solid $color;
+    $transparent-border: $width solid transparent;
+    height: 0; 
+    width: 0; 
+
+    @if $direction == top { 
+        border-bottom: $border-style; 
+        border-left: $transparent-border; 
+        border-right: $transparent-border; 
+    } @else if $direction == right { 
+        border-left: $border-style; 
+        border-top: $transparent-border; 
+        border-bottom: $transparent-border; 
+    } @else if $direction == bottom { 
+        border-top: $border-style; 
+        border-left: $transparent-border; 
+        border-right: $transparent-border; 
+    } @else if $direction == left { 
+        border-right: $border-style; 
+        border-top: $transparent-border; 
+        border-bottom: $transparent-border; 
+    } 
+}
+
